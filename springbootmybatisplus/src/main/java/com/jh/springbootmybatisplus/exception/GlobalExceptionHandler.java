@@ -44,6 +44,13 @@ public class GlobalExceptionHandler {
             }
         }
         return validTips;
+    }
 
+    @ExceptionHandler
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public String handle2(UserNameException exception){
+        String validTips = ""+exception.getMessage();
+        return validTips;
     }
 }

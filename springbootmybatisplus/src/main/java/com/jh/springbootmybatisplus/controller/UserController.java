@@ -5,9 +5,11 @@ import com.jh.springbootmybatisplus.entity.login.UserLogin;
 import com.jh.springbootmybatisplus.service.IUserservice;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.io.ResolverUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,14 +26,12 @@ public class UserController {
     @Autowired
     IUserservice userserviceimpl;
 
+//    private static final Logger LOGGER = LoggerFactory.getLogger(ResolverUtil.Test.class);
+
     @ApiOperation("用户登录")
     @RequestMapping(value = {"/login-action"})
-    public String login(@RequestBody @Valid UserLogin logins){
+    public void login(@RequestBody @Valid UserLogin logins){
         User user = userserviceimpl.userlogin(logins);
-        if (user!=null){
-        return "登录成功";
-        }
-        return  "用户名或密码错误！";
     }
     /**
      *新增一个用户

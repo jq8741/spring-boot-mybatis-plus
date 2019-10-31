@@ -1,10 +1,12 @@
 package com.jh.springbootmybatisplus.jwt.filter;
 
+import com.jh.springbootmybatisplus.dao.UserDao;
 import com.jh.springbootmybatisplus.jwt.jwttoken.JwtToken;
 import com.jh.springbootmybatisplus.jwt.jwtutils.JwtUtil;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationServiceException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,6 +27,9 @@ import java.util.Date;
 public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    UserDao userDao;
 
     public JWTLoginFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;

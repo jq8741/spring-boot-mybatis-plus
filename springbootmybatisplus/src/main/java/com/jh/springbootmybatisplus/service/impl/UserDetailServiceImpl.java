@@ -2,6 +2,7 @@ package com.jh.springbootmybatisplus.service.impl;
 
 
 import com.jh.springbootmybatisplus.dao.UserDao;
+import com.jh.springbootmybatisplus.exception.UserNameException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -26,7 +27,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String password = encoder.encode(userDao.getUserPassWord(userName));
+        String pw = userDao.getUserPassWord(userName);
+        if(pw==null||pw.equals(" ")){
+            throw new UserNameException("用户名为空或不存在！");
+        }
+        String password = encoder.encode(pw);
 //        String password = "$2a$10$udnNGFNVZrxRAcmiveEZl.6R87CfjqPkSrqRCRhqUuTKn.Aq/Djt6";
         return new User(userName,password,getAuthority());
     }

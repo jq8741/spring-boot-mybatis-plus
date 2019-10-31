@@ -6,11 +6,7 @@ spring:
     username: root
     password: 1234
 
-  mybatis-plus:
-    configuration:
-      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-      mapperLocations: classpath:mybatis/mapper/*.xml
-      type-aliases-package=classpath: com.jh.springbootmybatisplus.entity
+
 
 swagger:
   enabled: false

@@ -2,6 +2,12 @@ spring:
   profiles:
     active: prod
 
+  mybatis-plus:
+    configuration:
+      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+      mapperLocations: classpath:mybatis/mapper/*.xml
+      type-aliases-package=classpath: com.jh.springbootmybatisplus.entity
+
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 5
